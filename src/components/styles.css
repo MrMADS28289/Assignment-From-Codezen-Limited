@@ -1,0 +1,55 @@
+/* Tabs Styling */
+.tabs-container {
+    padding: 20px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: none;
+    margin-right: 5px;
+}
+
+.tab.active {
+    background-color: #156BED;
+    color: white;
+}
+
+.tab:disabled {
+    cursor: not-allowed;
+    color: #ccc;
+}
+
+/* Color List Styling */
+.color-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+}
+
+li:hover .menu {
+    display: block;
+}
+
+/* Add button styling */
+.add-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #156BED;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
