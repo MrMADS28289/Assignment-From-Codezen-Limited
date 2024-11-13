@@ -1,0 +1,14 @@
+.design-system {
+    margin-top: 20px;
+  }
+  
+  .color-setting {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .color-setting label {
+    margin-right: 10px;
+  }
+  

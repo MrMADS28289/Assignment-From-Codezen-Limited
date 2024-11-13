@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from "react";
+import Sidebar from "./Components/Sidebar";
+import MainContent from "./Components/MainContent";
+import "./App.css";
 
 function App() {
+  const [activeSection, setActiveSection] = useState("Dashboard");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Sidebar setActiveSection={setActiveSection} />
+      <div className="main-area">
+        <MainContent activeSection={activeSection} />
+      </div>
     </div>
   );
 }
