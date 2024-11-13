@@ -6,9 +6,9 @@ import Drawer from "./Drawer";
 import "../Styles/ColorTab.css";
 
 const initialColors = [
-  { id: 1, title: "Red", color: "#FF0000" },
-  { id: 2, title: "Green", color: "#00FF00" },
-  { id: 3, title: "Blue", color: "#0000FF" },
+  { id: 1, title: "Primary", color: "#156BED" },
+  { id: 2, title: "Secondery", color: "#ED1976" },
+  { id: 3, title: "Title text", color: "#000000" },
 ];
 
 const ColorTab = () => {
@@ -55,11 +55,9 @@ const ColorTab = () => {
 
   return (
     <div className="kzui-color-tab">
-      <div className="kzui-tabs">
-        <button className="kzui-tab kzui-tab-active">Color</button>
-        <button className="kzui-tab" disabled>
-          Other Tabs
-        </button>
+      <div className="color-tab-header">
+        <button className="color-tab-btn">Name</button>
+        <button className="color-tab-btn">Value</button>
       </div>
       <SortableList
         items={colors}
@@ -67,7 +65,7 @@ const ColorTab = () => {
         openDrawer={openDrawer}
       />
       <button onClick={addItem} className="kzui-add-button">
-        Add
+        + Add Color
       </button>
       {isDrawerOpen && <Drawer item={currentItem} closeDrawer={closeDrawer} />}
     </div>
@@ -76,7 +74,7 @@ const ColorTab = () => {
 
 const SortableList = SortableContainer(({ items, openDrawer }) => {
   return (
-    <ul>
+    <ul className="color-container">
       {items.map((item, index) => (
         <SortableColorItem
           key={item.id}

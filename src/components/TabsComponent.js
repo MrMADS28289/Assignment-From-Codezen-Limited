@@ -30,9 +30,6 @@ const TabsComponent = () => {
           Integration
         </button>
       </div>
-
-      {/* Render ColorTab component if the Color tab is active */}
-      {/* {activeTab === "Color" && <ColorTab />} */}
     </div>
   );
 };
