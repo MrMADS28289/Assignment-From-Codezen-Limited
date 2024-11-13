@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ColorTab from "./ColorTab";
+import "../Styles/styles.css";
 
 const TabsComponent = () => {
   // Track the active tab
@@ -14,23 +14,25 @@ const TabsComponent = () => {
 
   return (
     <div className="tabs-container">
+      <h3 className="page-title">Settings</h3>
       <div className="tabs">
+        <h5 className="tabs-title">MENU</h5>
+        <button className="tab" disabled>
+          General
+        </button>
         <button
           className={`tab ${activeTab === "Color" ? "active" : ""}`}
           onClick={() => handleTabClick("Color")}
         >
-          Color
+          Design System
         </button>
         <button className="tab" disabled>
-          Tab 2
-        </button>
-        <button className="tab" disabled>
-          Tab 3
+          Integration
         </button>
       </div>
 
       {/* Render ColorTab component if the Color tab is active */}
-      {activeTab === "Color" && <ColorTab />}
+      {/* {activeTab === "Color" && <ColorTab />} */}
     </div>
   );
 };

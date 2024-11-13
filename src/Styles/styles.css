@@ -1,24 +1,44 @@
 /* Tabs Styling */
 .tabs-container {
+    height: 180px;
+    width: 296px;
     padding: 20px;
 }
 
+.page-title{
+    padding-left: 20px;
+    font-size: 24px;
+}
+
+.tabs-title{
+    margin: 0;
+    padding-bottom: 10px;
+    color: #ccc;
+}
+
 .tabs {
-    display: flex;
     margin-bottom: 20px;
+    border: 1px solid #EAEAEB;
+    border-radius: 20px;
+    padding: 20px;
+    gap: 2;
 }
 
 .tab {
-    padding: 10px 20px;
+    height: 30px;
+    width: 256px;
     cursor: pointer;
-    background-color: #f0f0f0;
+    margin-bottom: 8px;
+    background-color: white;
     border: none;
-    margin-right: 5px;
+    border-radius: 5px;
+    text-align: start;
+    font-size: 16px;
 }
 
 .tab.active {
-    background-color: #156BED;
-    color: white;
+    background-color: #f5f2f2;
+    color: black;
 }
 
 .tab:disabled {

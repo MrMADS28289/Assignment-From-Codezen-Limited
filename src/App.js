@@ -1,12 +1,17 @@
-import React from "react";
-import TabsComponent from "./components/TabsComponent";
-import "./components/styles.css";
+import TabsComponent from "./Components/TabsComponent";
+import Header from "./Components/Header";
+import "./App.css";
+import DesignSystem from "./Components/DesignSystem";
 
 function App() {
   return (
-    <div className="App">
-      <TabsComponent />
-    </div>
+    <>
+      <Header />
+      <div className="parent-container">
+        <TabsComponent />
+        <DesignSystem />
+      </div>
+    </>
   );
 }
 
