@@ -11,9 +11,9 @@ function App() {
 
   return (
     <>
-      <div class="container">
+      <div className="container">
         <Sidebar setActiveSection={setActiveSection} />
-        <div class="main-area">
+        <div className="main-area">
           <MainContent activeSection={activeSection} />
         </div>
       </div>
