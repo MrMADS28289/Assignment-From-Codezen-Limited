@@ -42,15 +42,24 @@ const ColorTab = () => {
     closeDrawer(); // Close drawer after saving
   };
 
-  // Function to handle adding a new item
-  const addItem = () => {
-    const name = prompt("Enter the name of the new color:", "New Color");
-    const color = prompt("Enter the color (hex code):", "#CCCCCC");
+  // Function to duplicate an item
+  const duplicateItem = (item) => {
+    const newId =
+      colors.length > 0 ? Math.max(...colors.map((c) => c.id)) + 1 : 1;
+    const duplicatedItem = {
+      ...item,
+      id: newId,
+      title: `${item.title} Copy`,
+    };
+    setColors([...colors, duplicatedItem]);
+  };
 
+  // Function to handle adding an item
+  const addItem = () => {
     const newItem = {
       id: colors.length + 1,
-      title: name || "New Color",
-      color: color || "#CCCCCC",
+      title: "New Color",
+      color: "#CCCCCC",
     };
     setColors([...colors, newItem]);
     openDrawer(newItem);
@@ -72,6 +81,7 @@ const ColorTab = () => {
         onSortEnd={onSortEnd}
         openDrawer={openDrawer}
         deleteItem={deleteItem}
+        duplicateItem={duplicateItem}
       />
       <button onClick={addItem} className="kzui-add-button">
         + Add Color
@@ -87,25 +97,33 @@ const ColorTab = () => {
   );
 };
 
-const SortableList = SortableContainer(({ items, openDrawer, deleteItem }) => {
-  return (
-    <ul className="color-container">
-      {items.map((item, index) => (
-        <SortableColorItem
-          key={item.id}
-          index={index}
-          item={item}
-          openDrawer={openDrawer}
-          deleteItem={deleteItem}
-        />
-      ))}
-    </ul>
-  );
-});
+const SortableList = SortableContainer(
+  ({ items, openDrawer, deleteItem, duplicateItem }) => {
+    return (
+      <ul className="color-container">
+        {items.map((item, index) => (
+          <SortableColorItem
+            key={item.id}
+            index={index}
+            item={item}
+            openDrawer={openDrawer}
+            deleteItem={deleteItem}
+            duplicateItem={duplicateItem}
+          />
+        ))}
+      </ul>
+    );
+  }
+);
 
 const SortableColorItem = SortableElement(
-  ({ item, openDrawer, deleteItem }) => (
-    <ColorItem item={item} openDrawer={openDrawer} deleteItem={deleteItem} />
+  ({ item, openDrawer, deleteItem, duplicateItem }) => (
+    <ColorItem
+      item={item}
+      openDrawer={openDrawer}
+      deleteItem={deleteItem}
+      duplicateItem={duplicateItem}
+    />
   )
 );
 
