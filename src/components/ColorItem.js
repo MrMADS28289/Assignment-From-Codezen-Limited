@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../Styles/ColorTab.css";
 
 const ColorItem = ({ item, openDrawer, deleteItem, duplicateItem }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -11,13 +13,30 @@ const ColorItem = ({ item, openDrawer, deleteItem, duplicateItem }) => {
     setIsHovered(false);
   };
 
-  const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // Open the drawer with the item’s data for editing
   const editItem = (item) => {
     openDrawer(item);
   };
+
+  // Close menu if click is outside
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup event listener on component unmount
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
 
   return (
     <li
@@ -91,7 +110,7 @@ const ColorItem = ({ item, openDrawer, deleteItem, duplicateItem }) => {
         </button>
       </div>
       {menuOpen && (
-        <div className="kzui-menu">
+        <div ref={menuRef} className="kzui-menu">
           <button onClick={() => editItem(item)}>Edit</button>
           <button onClick={() => duplicateItem(item)}>Duplicate</button>
           <button onClick={() => deleteItem(item.id)}>Delete</button>
