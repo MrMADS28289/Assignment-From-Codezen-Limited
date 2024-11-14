@@ -7,7 +7,7 @@ const initialColors = [
   { id: 3, title: "Blue", color: "#0000FF" },
 ];
 
-const ColorItem = ({ item, openDrawer }) => {
+const ColorItem = ({ item, openDrawer, deleteItem }) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -36,10 +36,10 @@ const ColorItem = ({ item, openDrawer }) => {
   //   const deleteItem = (id) => {
   //     setColors(colors.filter((color) => color.id !== id)); // Remove item by ID
   //   };
-  const deleteItem = (id) => {
-    console.log("Deleting item with id:", id);
-    setColors(colors.filter((color) => color.id === id)); // Remove item by ID
-  };
+  // const deleteItem = (id) => {
+  //   console.log("Deleting item with id:", id);
+  //   setColors(colors.filter((color) => color.id === id)); // Remove item by ID
+  // };
 
   return (
     <li
@@ -47,7 +47,15 @@ const ColorItem = ({ item, openDrawer }) => {
       onMouseLeave={handleMouseLeave}
       className="kzui-color-item"
     >
-      <span className="item-title">{item.title}</span>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <input
+          style={{ display: isHovered ? "flex" : "none" }}
+          type="checkbox"
+          name="select-color-item"
+          id=""
+        />
+        <span className="item-title">{item.title}</span>
+      </div>
 
       <div
         style={{

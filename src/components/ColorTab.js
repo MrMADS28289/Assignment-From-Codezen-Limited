@@ -7,8 +7,9 @@ import "../Styles/ColorTab.css";
 
 const initialColors = [
   { id: 1, title: "Primary", color: "#156BED" },
-  { id: 2, title: "Secondery", color: "#ED1976" },
+  { id: 2, title: "Secondary", color: "#ED1976" },
   { id: 3, title: "Title text", color: "#000000" },
+  { id: 4, title: "Supporting Text", color: "#595959" },
 ];
 
 const ColorTab = () => {
@@ -20,26 +21,28 @@ const ColorTab = () => {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
 
+  // Open drawer to edit an item
   const openDrawer = (item = null) => {
     setCurrentItem(item);
     setDrawerOpen(true);
   };
 
+  // Close drawer
   const closeDrawer = () => {
     setDrawerOpen(false);
     setCurrentItem(null);
   };
 
-  // Function to handle adding an item
-  // const addItem = () => {
-  //   const newItem = {
-  //     id: colors.length + 1,
-  //     title: "New Color",
-  //     color: "#CCCCCC",
-  //   };
-  //   setColors([...colors, newItem]);
-  //   openDrawer(newItem);
-  // };
+  // Save the updated item
+  const saveItem = (updatedItem) => {
+    console.log(updatedItem);
+    setColors(
+      colors.map((color) => (color.id === updatedItem.id ? updatedItem : color))
+    );
+    closeDrawer(); // Close drawer after saving
+  };
+
+  // Function to handle adding a new item
   const addItem = () => {
     const name = prompt("Enter the name of the new color:", "New Color");
     const color = prompt("Enter the color (hex code):", "#CCCCCC");
@@ -53,6 +56,11 @@ const ColorTab = () => {
     openDrawer(newItem);
   };
 
+  // Delete item by id
+  const deleteItem = (id) => {
+    setColors(colors.filter((color) => color.id !== id));
+  };
+
   return (
     <div className="kzui-color-tab">
       <div className="color-tab-header">
@@ -63,16 +71,23 @@ const ColorTab = () => {
         items={colors}
         onSortEnd={onSortEnd}
         openDrawer={openDrawer}
+        deleteItem={deleteItem}
       />
       <button onClick={addItem} className="kzui-add-button">
         + Add Color
       </button>
-      {isDrawerOpen && <Drawer item={currentItem} closeDrawer={closeDrawer} />}
+      {isDrawerOpen && (
+        <Drawer
+          item={currentItem}
+          closeDrawer={closeDrawer}
+          saveItem={saveItem}
+        />
+      )}
     </div>
   );
 };
 
-const SortableList = SortableContainer(({ items, openDrawer }) => {
+const SortableList = SortableContainer(({ items, openDrawer, deleteItem }) => {
   return (
     <ul className="color-container">
       {items.map((item, index) => (
@@ -81,14 +96,17 @@ const SortableList = SortableContainer(({ items, openDrawer }) => {
           index={index}
           item={item}
           openDrawer={openDrawer}
+          deleteItem={deleteItem}
         />
       ))}
     </ul>
   );
 });
 
-const SortableColorItem = SortableElement(({ item, openDrawer }) => (
-  <ColorItem item={item} openDrawer={openDrawer} />
-));
+const SortableColorItem = SortableElement(
+  ({ item, openDrawer, deleteItem }) => (
+    <ColorItem item={item} openDrawer={openDrawer} deleteItem={deleteItem} />
+  )
+);
 
 export default ColorTab;

@@ -1,0 +1,97 @@
+/* Background overlay to darken the rest of the page */
+.kzui-drawer-overlay {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    justify-content: flex-end; /* Aligns drawer to the right */
+    z-index: 1000;
+}
+
+/* Drawer container positioned on the right side */
+.kzui-drawer {
+    top: -420px;
+    left: 200px;
+    width: 296px; /* Adjust width based on Figma design */
+    height: 399px; /* Full height */
+    background-color: #ffffff; /* White background for drawer */
+    /* padding: 20px; */
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2); /* Shadow for separation */
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%); /* Initially hidden */
+    transition: transform 0.3s ease; /* Smooth slide-in animation */
+    position: relative;
+    z-index: 20;
+}
+
+/* Open state to slide the drawer in from the right */
+.kzui-drawer.open {
+    transform: translateX(0);
+}
+
+/* Close button styling positioned at the top right of the drawer */
+.kzui-drawer-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+}
+
+/* Form input styles inside the drawer */
+.kzui-drawer-name-input{
+    height: 28px;
+    width: 256px;
+    margin: 20px;
+    margin-top: 0;
+    border: 1px solid #EAEAEB;
+    border-radius: 5px;
+}
+
+
+/* .kzui-drawer input[type="color"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+} */
+
+/* Color picker with a larger click area */
+.kzui-drawer input[type="color"] {
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Save and Cancel button styles */
+.kzui-drawer .save-button,
+.kzui-drawer .cancel-button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Primary Save button style */
+.kzui-drawer .save-button {
+    background-color: #156BED; /* Figma primary color */
+    color: #ffffff;
+}
+
+/* Neutral Cancel button style */
+.kzui-drawer .cancel-button {
+    background-color: #f0f0f0; /* Light gray */
+    color: #333;
+}
