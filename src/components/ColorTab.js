@@ -6,17 +6,20 @@ import Drawer from "./Drawer";
 import "../Styles/ColorTab.css";
 
 const initialColors = [
-  { id: 1, title: "Primary", color: "#156BED" },
-  { id: 2, title: "Secondary", color: "#ED1976" },
-  { id: 3, title: "Title text", color: "#000000" },
-  { id: 4, title: "Supporting Text", color: "#595959" },
+  { id: 1, title: "Primary", color: "#156BED", group: "Theme Colors" },
+  { id: 2, title: "Secondary", color: "#ED1976", group: "Theme Colors" },
+  { id: 3, title: "Title Text", color: "#000000", group: "Text Colors" },
+  { id: 4, title: "Supporting Text", color: "#595959", group: "Text Colors" },
 ];
+
+// const groups = ["Theme Colors", "Text Colors"];
 
 const ColorTab = () => {
   const [colors, setColors] = useState(initialColors);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
 
+  // Drop/drag array move func
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };

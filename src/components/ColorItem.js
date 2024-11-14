@@ -3,19 +3,20 @@ import "../Styles/ColorTab.css";
 
 const ColorItem = ({ item, openDrawer, deleteItem, duplicateItem }) => {
   const [isHovered, setIsHovered] = useState(false);
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-  const [menuOpen, setMenuOpen] = useState(false);
-  // const [colors, setColors] = useState(initialColors);
 
+  const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  // Open the drawer with the item’s data for editing
   const editItem = (item) => {
-    openDrawer(item); // Open the drawer with the item’s data for editing
+    openDrawer(item);
   };
 
   return (

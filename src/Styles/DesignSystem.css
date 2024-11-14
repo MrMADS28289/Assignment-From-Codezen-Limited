@@ -1,9 +1,11 @@
+/* Design system Style */
+
 .design-system-container{
     height: 720px;
     width: 816px;
     border: 1px solid #EAEAEB;
     margin-top: 68px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
     border-radius: 20px;
     padding-left: 20px;
     padding-right: 20px;

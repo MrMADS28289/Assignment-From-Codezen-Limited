@@ -1,16 +1,8 @@
-.parent-container{
-display: flex;
-justify-content: center;
+.container {
+  display: flex;
 }
 
 .main-area {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 20px;
-}
-
-.main-content {
-  padding: 20px;
-  background-color: #2B3136;
 }

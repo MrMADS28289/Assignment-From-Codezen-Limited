@@ -1,0 +1,14 @@
+.parent-container{
+display: flex;
+justify-content: center;
+}
+
+.main-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main-content {
+  background-color: #fff;
+}
